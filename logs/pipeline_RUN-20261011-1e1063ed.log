@@ -1,0 +1,12 @@
+2026-10-11 16:38:04,065 - [INFO] - Starting pipeline execution RUN-20261011-1e1063ed for input: data/raw/customers_day2.csv
+2026-10-11 16:38:04,083 - [INFO] - [BRONZE] Ingesting raw batch...
+2026-10-11 16:38:04,096 - [INFO] - [BRONZE] Ingested 10 raw records from customers_day2.csv
+2026-10-11 16:38:04,119 - [INFO] - [BRONZE] Raw snapshot saved to bronze_snapshot_RUN-20261011-1e1063ed.json
+2026-10-11 16:38:04,125 - [INFO] - [SILVER] Running DQ checks (Schema, Nulls, Duplicates)...
+2026-10-11 16:38:04,127 - [ERROR] - [DQ-CHECK] Schema Drift Detected: Missing required columns: ['country']
+2026-10-11 16:38:04,131 - [ERROR] - [DQ-CHECK] Duplicate primary key 'customer_id' detected: ['CUST002'] (2 rows)
+2026-10-11 16:38:04,463 - [ERROR] - [DQ-CHECK] Null or blank values found in required column 'email': 1 rows
+2026-10-11 16:38:04,468 - [WARNING] - [FAILURE] Data quality checks failed with 3 violations. Affected records: 10
+2026-10-11 16:38:04,471 - [WARNING] - [INCIDENT CREATED] Incident ID: INC-20261011-689081b3, Severity: HIGH
+2026-10-11 16:38:04,506 - [INFO] - [SILVER] Quarantined raw batch saved to quarantined_RUN-20261011-1e1063ed.csv
+2026-10-11 16:38:04,511 - [WARNING] - [GOLD] Publication GATED / BLOCKED due to DQ failures.

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    command: uvicorn src.api.app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./metadata:/app/metadata
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      # Add other required environment variables here
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+  dashboard:
+    build: .
+    command: streamlit run dashboard.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./metadata:/app/metadata
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
